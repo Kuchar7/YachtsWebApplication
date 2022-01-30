@@ -1,0 +1,11 @@
+﻿@model YachtsWebApplication.ViewModels.ConfirmationViewModel
+
+<div class="container">
+    <p class="display-4 text-center border-bottom py-2 mt-3">Nowa rezerwacja</p>
+    <p class="text-center py-2 mt-3">
+        Rezerwacja o nr ID (@Model.BookingId) została utworzona. Rezerwacja obejmuje dni od @Model.Start do @Model.End. Łączna kwota do opłaty wynosi @Model.Price zł. W celu potwierdzenia rezerwacji
+        proszę o wpłatę zaliczki w wysokosci @Model.Advance zł na adres email @Model.EmailAddress wysłane zostały dane do przelewu.
+    </p>
+</div>
+
+

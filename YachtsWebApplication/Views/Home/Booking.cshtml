@@ -1,0 +1,136 @@
+﻿@model YachtsWebApplication.ViewModels.BookingViewModel
+
+
+<main>
+    <div class="container d-flex justify-content-center mb-5">
+        <div class="px-3">
+
+            <img class="img-fluid" src="@Url.Content(Model.Image)" alt="zdjęcie">
+
+
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center">
+
+
+        <table class="table table-bordered w-55 mx-5">
+            <tbody>
+                <tr>
+                    <th scope="row"><p>Model</p></th>
+                    <td style="width:50%"><p>@Html.DisplayFor(item => Model.Model)</p></td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Rok produkcji</p></th>
+                    <td style="width:50%"><p>@Html.DisplayFor(item => Model.ProductionYear)</p></td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Kraj produkcji</p></th>
+                    <td style="width:50%"><p>@Html.DisplayFor(item => Model.ProductionCountry)</p></td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Kategoria jachtu</p></th>
+                    <td style="width:50%"><p>@Html.DisplayFor(item => Model.CategoryName)</p></td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Maksymalna załoga</p></th>
+                    <td><p>@Html.DisplayFor(item => Model.MaxCrewNumber)</p></td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Liczba kabin </p></th>
+                    <td>@Html.DisplayFor(item => Model.CabinsNumber)</td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Maksymalna pręśkość </p></th>
+                    <td>@Html.DisplayFor(item => Model.MaxSpeed)</td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Cena za dzień</p></th>
+                    <td><p>@Html.DisplayFor(item => Model.PricePerDay) zł</p></td>
+                </tr>
+                <tr>
+                    <th scope="row"><p>Opis</p></th>
+                    <td><p>@Html.DisplayFor(item => Model.Description)</p></td>
+                </tr>
+            </tbody>
+        </table>
+        @using (Html.BeginForm("Booking", "Home", FormMethod.Post, new { @class = "row align-content-start col-lg-6 col-xl-6 justify-content-center form-group ", @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.TextBoxFor(Model => Model.YachtId, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.CabinsNumber, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.Description, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.MaxCrewNumber, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.MaxSpeed, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.CategoryName, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.PricePerDay, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.Image, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.Model, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.ProductionCountry, new { @type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.ProductionYear, new { @type = "hidden", @class = "form-control" })
+
+            <div class="input-group input-group-lg mb-3 col-md-4 col-lg-6 mx-5 res-form">
+                @Html.TextBoxFor(Model => Model.FirstName, new { @class = "form-control", @placeholder = "Imie" })
+            </div>
+            <div class="input-group input-group-lg mb-3 col-md-4 col-lg-6 mx-5">
+                <div class="input-group-prepend">
+                </div>
+                @Html.TextBoxFor(Model => (Model.LastName), new { @class = "form-control", @placeholder = "Nazwisko" })
+
+            </div>
+            <div class="input-group input-group-lg mb-3 col-md-4 col-lg-6 mx-5">
+                <div class="input-group-prepend">
+                </div>
+                @Html.TextBoxFor(Model => (Model.EmailAddress), new { @class = "form-control", @placeholder = "Adres email" })
+
+            </div>
+
+
+            <div class="input-group input-group-lg mb-3 col-md-4 col-lg-6 mx-5">
+                <div class="input-group-prepend">
+                </div>
+                @Html.EditorFor(Model => Model.Start, new
+           {
+               htmlAttributes = new
+               {
+                   @placeholder = "Start",
+                   @class = "form-control"
+               }
+           })
+
+            </div>
+
+            <div class="input-group input-group-lg mb-3 col-md-4 col-lg-6 mx-5">
+                <div class="input-group-prepend">
+                </div>
+                @Html.EditorFor(Model => Model.End, new
+           {
+               htmlAttributes = new
+               {
+                   @placeholder = "Koniec:",
+                   @class = "form-control"
+               }
+           })
+
+            </div>
+
+            <div class="input-group input-group-lg mb-3 col-md-4 col-lg-6 mx-5">
+                <div class="input-group-prepend">
+                </div>
+                @Html.TextBoxFor(Model => (Model.PhoneNumber), new { @type = "number", @class = "form-control", @placeholder = "Numer telefonu" })
+
+            </div>
+
+            <div class="container d-flex justify-content-center mb-2 mx-5">
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger ml-5" })
+
+            </div>
+
+            <div class=" col-12 text-center">
+                <button type="submit" class="btn btn-outline-success submit-btn px-4">Rezerwuj</button>
+            </div>
+        }
+
+    </div>
+
+</main>
